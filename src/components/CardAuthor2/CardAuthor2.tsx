@@ -1,66 +1,48 @@
 import React, { FC } from "react";
 import { PostDataType } from "@/data/types";
 import Avatar from "@/components/Avatar/Avatar";
-import Link from "next/link";
 
-export interface CardAuthor2Props
-  extends Pick<PostDataType, "date" | "author"> {
+export interface CardAuthor2Props {
   className?: string;
-  readingTime?: PostDataType["readingTime"];
   hoverReadingTime?: boolean;
+  author: any;
+  date: any;
+  type: any;
 }
 
 const CardAuthor2: FC<CardAuthor2Props> = ({
   className = "",
   author,
-  readingTime,
   date,
   hoverReadingTime = true,
+  type
 }) => {
-  const { displayName, href = "/", avatar } = author;
+
   return (
-    <Link
-      href={href}
+    <div
       className={`nc-CardAuthor2 relative inline-flex items-center ${className}`}
+      data-nc-id="CardAuthor2"
     >
       <Avatar
         sizeClass="h-10 w-10 text-base"
         containerClassName="flex-shrink-0 mr-3"
         radius="rounded-full"
-        imgUrl={avatar}
-        userName={displayName}
+        imgUrl={type === 'authors' ? author.avatar_url : author.avatar}
+        userName={type === 'authors' ? author.full_name : author.name}
       />
       <div>
         <h2
           className={`text-sm text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium`}
         >
-          {displayName}
+          {type === 'authors' ? author.full_name : author.name}
         </h2>
         <span
           className={`flex items-center mt-1 text-xs text-neutral-500 dark:text-neutral-400`}
         >
           <span>{date}</span>
-          {readingTime && (
-            <>
-              <span
-                className={`hidden lg:inline mx-1 transition-opacity ${
-                  hoverReadingTime ? "opacity-0 group-hover:opacity-100" : ""
-                }`}
-              >
-                ·
-              </span>
-              <span
-                className={`hidden lg:inline transition-opacity ${
-                  hoverReadingTime ? "opacity-0 group-hover:opacity-100" : ""
-                }`}
-              >
-                {readingTime} min read
-              </span>
-            </>
-          )}
         </span>
       </div>
-    </Link>
+    </div>
   );
 };
 

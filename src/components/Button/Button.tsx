@@ -7,6 +7,7 @@ import Loading from "./Loading";
 
 export interface ButtonProps {
   className?: string;
+  translate?: string;
   sizeClass?: string;
   fontSize?: string;
   pattern?: "primary" | "secondary" | "third" | "white" | "default";
@@ -22,6 +23,7 @@ export interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({
   pattern = "default",
+  translate = "",
   className = "",
   sizeClass = "py-3 px-4 sm:py-3.5 sm:px-6",
   fontSize = "text-sm sm:text-base font-medium",

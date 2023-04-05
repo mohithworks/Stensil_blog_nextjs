@@ -1,11 +1,10 @@
-import { PostDataType } from "@/data/types";
 import React, { FC } from "react";
 import Badge from "@/components/Badge/Badge";
 
 export interface CategoryBadgeListProps {
   className?: string;
   itemClass?: string;
-  categories: PostDataType["categories"];
+  categories: any;
 }
 
 const CategoryBadgeList: FC<CategoryBadgeListProps> = ({
@@ -13,20 +12,18 @@ const CategoryBadgeList: FC<CategoryBadgeListProps> = ({
   itemClass,
   categories,
 }) => {
+    
   return (
     <div
       className={`nc-CategoryBadgeList ${className}`}
       data-nc-id="CategoryBadgeList"
     >
-      {categories.map((item, index) => (
         <Badge
           className={itemClass}
-          key={index}
-          name={item.name}
-          href={item.href}
-          color={item.color as any}
+          name={categories.name}
+          href={categories.href}
+          color={'red'}
         />
-      ))}
     </div>
   );
 };

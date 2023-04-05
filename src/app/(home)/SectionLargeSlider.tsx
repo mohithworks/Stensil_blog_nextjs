@@ -1,19 +1,22 @@
 "use client";
 
-import CardLarge1 from "@/components/CardLarge1/CardLarge1";
-import Heading from "@/components/Heading/Heading";
+import Card2 from "@/components/Card2/Card2";
+import TitleHeading from "@/components/Heading/TitleHeading";
 import { PostDataType } from "@/data/types";
 import React, { FC, useState } from "react";
 
 export interface SectionLargeSliderProps {
   className?: string;
   heading?: string;
+  desc?: string;
   posts: PostDataType[];
+  type?: any,
 }
-
 const SectionLargeSlider: FC<SectionLargeSliderProps> = ({
   posts,
   heading = "Editor's pick",
+  desc = "Discover the most outstanding articles in all topics of life. ",
+  type = "default",
   className = "",
 }) => {
   const [indexActive, setIndexActive] = useState(0);
@@ -36,20 +39,24 @@ const SectionLargeSlider: FC<SectionLargeSliderProps> = ({
     });
   };
 
+  const authorPosts:any = posts;
+
   return (
-    <div className={`nc-SectionLargeSlider relative ${className}`}>
-      {!!heading && <Heading>{heading}</Heading>}
-      {posts.map((item, index) => {
-        if (indexActive !== index) return null;
-        return (
-          <CardLarge1
-            key={index}
-            onClickNext={handleClickNext}
-            onClickPrev={handleClickPrev}
-            post={item}
-          />
-        );
-      })}
+    <div className={`relative ${className}`}>
+      <div className="text-center">
+        {!!heading && <TitleHeading desc={desc}>{heading}</TitleHeading>}
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6 md:gap-8 mt-8 md:mt-0">
+        {authorPosts != undefined && posts.map((item, index) => {
+          return (
+            <Card2
+              key={index}
+              size="large"
+              posts={item}
+            />
+          )
+        })}
+      </div>
     </div>
   );
 };

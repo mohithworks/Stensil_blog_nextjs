@@ -147,6 +147,19 @@
   }
 }
 
+.nc-dark-box-bg-has-hover {
+  @apply dark:bg-neutral-800 dark:bg-opacity-30  dark:border dark:border-neutral-700 dark:hover:bg-neutral-800 dark:hover:shadow-2xl;
+}
+
+.nc-dark-box-bg {
+  @apply dark:bg-neutral-800 dark:bg-opacity-30  dark:border dark:border-neutral-700 dark:shadow-2xl;
+}
+
+//
+.nc-box-has-hover {
+  @apply bg-white rounded-3xl border border-neutral-200 border-opacity-70 hover:bg-neutral-50 hover:shadow-xl hover:border-transparent transition-shadow;
+}
+
 .nc-google-shadow {
   box-shadow: 0px 6px 10px 0px rgb(0 0 0 / 14%),
     0px 1px 18px 0px rgb(0 0 0 / 12%), 0px 3px 5px -1px rgb(0 0 0 / 20%);
