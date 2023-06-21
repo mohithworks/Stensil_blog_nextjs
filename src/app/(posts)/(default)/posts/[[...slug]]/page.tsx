@@ -72,12 +72,12 @@ const PageSingle = async ({ params }: { params: { slug: string } }) => {
   const postData = await fetchPost(params.slug[0], domain1, domain2);
   console.log(postData);
 
-  if(postData.errors) {
-    return <Error textSizeSH={'text-2xl'} />
-  }
-  if(postData.post.length == 0) {
-    return <NotFound />;
-  }
+  // if(postData.errors) {
+  //   return <Error textSizeSH={'text-2xl'} />
+  // }
+  // if(postData.post.length == 0) {
+  //   return <NotFound />;
+  // }
   return (
     <>
       <div className={`nc-PageSingle pt-8 lg:pt-16`}>

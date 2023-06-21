@@ -92,9 +92,9 @@ const PageSearch = async ({
   console.log(postsData)
   console.log(catData)
 
-  if(postsData.errors || catData.errors) { 
-    return <Error textSizeSH={'text-4xl'} />
-  }
+  // if(postsData.errors || catData.errors) { 
+  //   return <Error textSizeSH={'text-4xl'} />
+  // }
   return (
     <div className={`nc-PageSearchV2`}>
       <div className="w-full px-2 xl:max-w-screen-2xl mx-auto px-30">

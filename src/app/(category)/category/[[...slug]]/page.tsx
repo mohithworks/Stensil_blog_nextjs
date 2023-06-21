@@ -121,12 +121,12 @@ const PageArchive = async ({ params }: { params: { slug: string } }) => {
   const postData = await fetchPost(params.slug[0], domain1, domain2);
   console.log(postData);
 
-  if(postData.errors) {
-    return <Error textSizeSH={'text-2xl'} />
-  }
-  if(!postData.category) {
-    return <NotFound />;
-  }
+  // if(postData.errors) {
+  //   return <Error textSizeSH={'text-2xl'} />
+  // }
+  // if(!postData.category) {
+  //   return <NotFound />;
+  // }
   return (
     <div className={`nc-PageArchive flex-1`}>
       {/* HEADER */}

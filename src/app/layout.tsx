@@ -113,11 +113,11 @@ export default async function RootLayout({
 
   const { errors, author, nav } = userData;
 
-  if(errors) {
-    return <Error textSizeSH={'text-2xl'} />
-  } else if(author.length == 0) { 
-    return <NotFound />
-  }
+  // if(errors) {
+  //   return <Error textSizeSH={'text-2xl'} />
+  // } else if(author.length == 0) { 
+  //   return <NotFound />
+  // }
   return (
     <html lang="en" className={poppins.className}>
       <body suppressHydrationWarning={true} className="bg-[#f8f8f8] text-base dark:bg-neutral-900/95 text-neutral-900 dark:text-neutral-200">
