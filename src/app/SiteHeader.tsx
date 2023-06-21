@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import HeaderLogged from "@/components/Header/HeaderLogged";
 import Header from "@/components/Header/Header";
-import Header2 from "@/components/Header/Header2";
+import SubHeader2 from "@/components/Header/SubHeader2";
 import { useThemeMode } from "@/hooks/useThemeMode";
 
 const SiteHeader = () => {
@@ -19,11 +19,11 @@ const SiteHeader = () => {
         HeadComponent = Header;
         break;
       case "/home-3":
-        HeadComponent = Header2;
+        HeadComponent = SubHeader2;
         break;
 
       default:
-        HeadComponent = Header2;
+        HeadComponent = SubHeader2;
         break;
     }
 

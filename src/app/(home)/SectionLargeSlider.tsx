@@ -1,6 +1,6 @@
 "use client";
 
-import Card2 from "@/components/Card2/Card2";
+import SubCard2 from "@/components/Card2/SubCard2";
 import TitleHeading from "@/components/Heading/TitleHeading";
 import { PostDataType } from "@/data/types";
 import React, { FC, useState } from "react";
@@ -49,7 +49,7 @@ const SectionLargeSlider: FC<SectionLargeSliderProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6 md:gap-8 mt-8 md:mt-0">
         {authorPosts != undefined && posts.map((item, index) => {
           return (
-            <Card2
+            <SubCard2
               key={index}
               size="large"
               posts={item}

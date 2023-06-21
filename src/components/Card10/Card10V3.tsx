@@ -146,13 +146,6 @@ const Card10V3: FC<Card10V3Props> = ({
             {title}
           </Link>
         </h2>
-        <CardAuthor2
-          className="mt-3"
-          author={author}
-          hoverReadingTime={false}
-          date={date}
-          readingTime={readingTime}
-        />
       </div>
     </div>
   );

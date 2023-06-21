@@ -7,7 +7,7 @@ export type GlobalContent = {
   errors: any
   post: any
   author: any
-  navigation?: any
+  nav?: any
   currentPost?: any
   domain1: string
   domain2: string
@@ -24,7 +24,7 @@ export const MyGlobalContext = createContext<GlobalContent>({
   errors: false,
   post: 'Hello World', 
   author: 'Hello World',
-  navigation: 'Hello World',
+  nav: 'Hello World',
   currentPost: 'Hello World',
   domain1: 'Hello World',
   domain2: 'Hello World',

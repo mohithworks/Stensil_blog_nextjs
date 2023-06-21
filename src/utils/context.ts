@@ -5,8 +5,8 @@ export type GlobalContent = {
   post: any
   currentPost?: any
   navigation?: any
-  initpostRange?: any
-  finpostRange?: any
+  domain1: string
+  domain2: string
 }
 
 export const MyGlobalContext = createContext<GlobalContent>({
@@ -14,8 +14,8 @@ export const MyGlobalContext = createContext<GlobalContent>({
   post: 'Hello World', // set a default value
   currentPost: 'Hello World', // set a default value
   navigation: 'Hello World', // set a default value
-  initpostRange: 0,
-  finpostRange: 0
+  domain1: '',
+  domain2: ''
 });
 
 export const useGlobalContext = () => useContext(MyGlobalContext);
