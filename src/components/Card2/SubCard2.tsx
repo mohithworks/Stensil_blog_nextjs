@@ -6,7 +6,7 @@ import PostCardSaveAction from "@/components/PostCardSaveAction/PostCardSaveActi
 import { PostDataType } from "@/data/types";
 import SocialsShare from "@/components/SocialsShare/SocialsShare";
 import PostCardLikeAndComment from "@/components/PostCardLikeAndComment/PostCardLikeAndComment";
-import CardAuthor2 from "@/components/CardAuthor2/CardAuthor2";
+import SubCardAuthor2 from "@/components/CardAuthor2/SubCardAuthor2";
 import SubCategoryBadgeList from "@/components/CategoryBadgeList/SubCategoryBadgeList";
 import PostTypeFeaturedIcon from "@/components/PostTypeFeaturedIcon/PostTypeFeaturedIcon";
 import Link from "next/link";
@@ -60,7 +60,7 @@ const SubCard2: FC<Card2Props> = ({
             </Link>
           </h2>
         </div>
-        <CardAuthor2 className="relative my-4" type={refauthors.id === '153de11c-9ce8-4d79-9d19-c10da778e84c' ? 'authors': 'refauthors'} author={refauthors.id === '153de11c-9ce8-4d79-9d19-c10da778e84c' ? authors : refauthors} date={date} />
+        <SubCardAuthor2 className="relative my-4" type={refauthors.id === '153de11c-9ce8-4d79-9d19-c10da778e84c' ? 'authors': 'refauthors'} author={refauthors.id === '153de11c-9ce8-4d79-9d19-c10da778e84c' ? authors : refauthors} date={date} />
         <h2 className="text-[15px] text-neutral-500 dark:text-neutral-400 line-clamp-2 mt-3">
           {postContent}
         </h2>
