@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+"use client"
+import React, { FC, useState } from "react";
 import Avatar from "@/components/Avatar/Avatar";
 import htmltoText from "@/utils/htmltoText";
 import { useReadingTime } from "react-hook-reading-time";
@@ -25,8 +26,8 @@ const SubPostMeta2: FC<PostMeta2Props> = ({
   avatarRounded,
 }) => {
   const { created_at, authors, post, refauthors } = meta;
+  const [date, setDate] = useState(new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'}));
 
-  const date =  new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'});
   const { text } = useReadingTime(htmltoText(post));
 
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import NcImage from "@/components/NcImage/NcImage";
 import PostCardSaveAction from "@/components/PostCardSaveAction/PostCardSaveAction";
 import { PostDataType } from "@/data/types";
@@ -26,10 +26,9 @@ const SubCard2: FC<Card2Props> = ({
   posts,
 }) => {
   const { title, featured_imghd, href, created_at, category, post, authors, refauthors } = posts;
+  const [date, setDate] = useState(new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'}));
 
   const postContent = htmltoText(post);
-
-  const date = new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'}) ;
 
   return (
     <div className={`nc-Card2 group relative flex flex-col  [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ] overflow-hidden ${className}`}

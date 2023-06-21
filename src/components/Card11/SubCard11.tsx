@@ -30,6 +30,7 @@ const SubCard11: FC<Card11Props> = ({
   onClick,
 }) => {
   const { title, featured_imghd, href, created_at, category } = post;
+  const [date, setDate] = useState(new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'}));
 
   const postText = postTextShow === true ? htmltoText(post.post) : '';
 
@@ -68,7 +69,7 @@ const SubCard11: FC<Card11Props> = ({
 
         <div className="p-4 flex flex-col space-y-3">
           <div className="text-xs mt-[6px]">
-            <span className="text-xs text-neutral-500">{ new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'}) }</span>
+            <span className="text-xs text-neutral-500">{date}</span>
             {
               postTextShow && 
               <>

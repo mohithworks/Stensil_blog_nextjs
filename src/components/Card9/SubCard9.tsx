@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+"use client"
+import React, { FC, useState } from "react";
 import PostCardSaveAction from "@/components/PostCardSaveAction/PostCardSaveAction";
 import { PostDataType } from "@/data/types";
 import PostCardLikeAndComment from "@/components/PostCardLikeAndComment/PostCardLikeAndComment";
@@ -26,8 +27,8 @@ const SubCard9: FC<Card9Props> = ({
   hoverClass = "",
 }) => {
   const { title, featured_imgsd, created_at, category, post } = posts;
-  
-  const date = new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'});
+  const [date, setDate] = useState(new Date(created_at).toLocaleString('en-us',{month:'short', day:'numeric', year:'numeric'}));
+
   const { text } = useReadingTime(htmltoText(post));
 
   const renderMeta = () => {
