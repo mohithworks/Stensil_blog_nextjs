@@ -8,8 +8,6 @@ import SiteHeader from "./SiteHeader";
 import supabaseClient from "@/utils/supabaseClient";
 import getAuthorSlugv2 from "@/utils/getAuthorSlugv2";
 import GlobalContextProvider from "@/context/GlobalContextProvider";
-import Error from "@/components/Error/Error";
-import NotFound from "@/components/NotFound/NotFound";
 import { Metadata } from 'next';
 
 const poppins = Poppins({
@@ -66,7 +64,7 @@ const fetchAuthor = async () => {
 
 const fetchMeta = async () => { 
   const { domain1, domain2 } = getAuthorSlugv2();
-    var authors:any = await supabaseFetchMultipleEq("authors", "metatitle, description, title", "username", domain1, 'cus_domain', domain2);
+    var authors:any = await supabaseFetchMultipleEq("authors", "metatitle, description, title, faviconimg", "username", domain1, 'cus_domain', domain2);
 
     if (authors.error) {
       return { error: true, data: null };
@@ -100,6 +98,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: data[0].metatitle,
     description:  data[0].description,
     keywords: data[0].title + ' ' + data[0].metatitle + ' ' + data[0].description,
+    icons: {
+      icon: {
+        url: data[0].faviconimg ? data[0].faviconimg : "/favicon.png",
+        type: "image/png",
+      },
+    }
   };
 }
 
@@ -113,24 +117,24 @@ export default async function RootLayout({
 
   const { errors, author, nav } = userData;
 
-  // if(errors) {
-  //   return <Error textSizeSH={'text-2xl'} />
-  // } else if(author.length == 0) { 
-  //   return <NotFound />
-  // }
   return (
     <html lang="en" className={poppins.className}>
       <body suppressHydrationWarning={true} className="bg-[#f8f8f8] text-base dark:bg-neutral-900/95 text-neutral-900 dark:text-neutral-200">
         <GlobalContextProvider data={userData}>
-          <SiteHeader />
+          {
+            !errors && author.length > 0 && <SiteHeader />
+          }
           {children}
           <MusicPlayer />
-          <SubFooter authors={[{
-            logoimg: author[0].logoimg,
-            metatitle: author[0].metatitle,
-            logoimgdark: author[0].logoimgdark,
-            darkmode: author[0].darkmode,
-          }]} menus={nav} />
+          {
+            !errors && author.length > 0 && 
+            <SubFooter authors={[{
+              logoimg: author[0].logoimg,
+              metatitle: author[0].metatitle,
+              logoimgdark: author[0].logoimgdark,
+              darkmode: author[0].darkmode,
+            }]} menus={nav} />
+          }
         </GlobalContextProvider>
       </body>
     </html>
