@@ -121,20 +121,15 @@ export default async function RootLayout({
     <html lang="en" className={poppins.className}>
       <body suppressHydrationWarning={true} className="bg-[#f8f8f8] text-base dark:bg-neutral-900/95 text-neutral-900 dark:text-neutral-200">
         <GlobalContextProvider data={userData}>
-          {
-            !errors && author.length > 0 && <SiteHeader />
-          }
+          <SiteHeader />
           {children}
           <MusicPlayer />
-          {
-            !errors && author.length > 0 && 
-            <SubFooter authors={[{
-              logoimg: author[0].logoimg,
-              metatitle: author[0].metatitle,
-              logoimgdark: author[0].logoimgdark,
-              darkmode: author[0].darkmode,
-            }]} menus={nav} />
-          }
+          <SubFooter authors={[{
+            logoimg: author[0].logoimg,
+            metatitle: author[0].metatitle,
+            logoimgdark: author[0].logoimgdark,
+            darkmode: author[0].darkmode,
+          }]} menus={nav} />
         </GlobalContextProvider>
       </body>
     </html>

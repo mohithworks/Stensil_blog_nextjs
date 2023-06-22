@@ -41,7 +41,6 @@ import IconButton from '@mui/material/IconButton';
 import { PostDataType } from "@/data/types";
 import SubArchiveFilterListBox from "@/components/ArchiveFilterListBox/SubArchiveFilterListBox";
 import dynamic from 'next/dynamic';
-import NotFound from "@/components/NotFound/NotFound";
 
 //
 const MAGAZINE1_POSTS = DEMO_POSTS.filter((_, i) => i >= 8 && i < 16);
@@ -263,11 +262,6 @@ const PageHome = (props: any) => {
 
   const href = (post: any) => { return post.href; }
 
-  if(errors) {
-    return <Error textSizeSH={'text-2xl'} />
-  } else if(author.length == 0) { 
-    return <NotFound />
-  }
   return (
     <>
     <div className="nc-PageHome relative overflow-x-hidden bg-white dark:bg-slate-800">
