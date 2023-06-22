@@ -3,8 +3,8 @@ import { headers } from 'next/headers';
 
 const getAuthorSlug = () => {
     const hostname:any = headers().get('host')
-    const location = hostname.split(".")[1];
-    const location2 = hostname.split(".")[2];
+    const location = hostname.split(".")[0];
+    const location2 = hostname.split(".")[1];
     console.log('hostname', hostname)
 
     const url = process.env.NEXT_URL;

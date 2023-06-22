@@ -37,8 +37,8 @@ const nextConfig = {
     NEXT_SUPABASE_URL: 'https://vwporhpsnujzncbdxtaj.supabase.co',
     NEXT_SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ3cG9yaHBzbnVqem5jYmR4dGFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjAyMTcyOTUsImV4cCI6MTk3NTc5MzI5NX0.ZEQ583HrH3bG91azsQdUmZ9K-wuqxtbrSpgSPXiSo1E',
     NEXT_SITE: 'inkflow.tk',
-    NEXT_SITE_NAME: 'inkflow.tk',
-    NEXT_URL: 'inkflow.tk',
+    NEXT_SITE_NAME: 'inkflow',
+    NEXT_URL: 'inkflow',
   },
 };
 
