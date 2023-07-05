@@ -64,7 +64,7 @@ const fetchAuthor = async () => {
 
 const fetchMeta = async () => { 
   const { domain1, domain2 } = getAuthorSlugv2();
-    var authors:any = await supabaseFetchMultipleEq("authors", "metatitle, description, title, faviconimg", "username", domain1, 'cus_domain', domain2);
+    var authors:any = await supabaseFetchMultipleEq("authors", "metatitle, metadescription, title, faviconimg", "username", domain1, 'cus_domain', domain2);
 
     if (authors.error) {
       return { error: true, data: null };
@@ -96,8 +96,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
   return {
     title: data[0].metatitle,
-    description:  data[0].description,
-    keywords: data[0].title + ' ' + data[0].metatitle + ' ' + data[0].description,
+    description:  data[0].metadescription,
+    keywords: data[0].title + ' ' + data[0].metatitle + ' ' + data[0].metadescription,
     icons: {
       icon: {
         url: data[0].faviconimg ? data[0].faviconimg : "/favicon.png",

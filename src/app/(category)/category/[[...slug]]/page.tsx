@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   return {
     title: data[0].name + ' | ' + data[0].authors.metatitle,
-    description: '',
+    description: data[0].metadescription,
     keywords: data[0].name + ' ' + data[0].title + ' ' + data[0].authors.metatitle,
   };
 }

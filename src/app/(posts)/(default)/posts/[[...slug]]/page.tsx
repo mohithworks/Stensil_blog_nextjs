@@ -59,8 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   }
   return {
-    title: post[0].title + ' | ' + post[0].authors.metatitle,
-    description: '',
+    title: post[0].metatitle + ' | ' + post[0].authors.metatitle,
+    description: post[0].metadescription,
     keywords: post[0].title + ' ' + post[0].category.name + ' ' + post[0].authors.metatitle,
   };
 }

@@ -46,7 +46,7 @@ export const renderLogo = (author: any, darkmodeState: boolean) => {
         }
       }
     }
-  }
+}
 
 const SubMainNav1: FC<MainNav1Props> = ({}) => {
   const { author, nav } = useGlobalContext();  
