@@ -80,7 +80,7 @@ const PageSingle = async ({ params }: { params: { slug: string } }) => {
   // }
   return (
     <>
-      <div className={`nc-PageSingle bg-white pt-8 lg:pt-16`}>
+      <div className={`nc-PageSingle bg-white dark:bg-slate-800 pt-8 lg:pt-16`}>
         <header className="container rounded-xl">
           <div className="max-w-screen-md mx-auto">
             <SubSingleHeader postData={postData.post} />
