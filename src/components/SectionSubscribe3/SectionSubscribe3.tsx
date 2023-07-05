@@ -87,8 +87,8 @@ const SectionSubscribe3: FC<SectionSubscribe3Props> = ({ className = "" }) => {
       <section className="dark:bg-neutral-1000">
         <div className="px-4 mx-auto max-w-screen lg:px-6">
             <div className="mx-auto max-w-screen-md sm:text-center">
-                <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">{author[0].newsletterC[0]['title']}</h2>
-                <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">{author[0].newsletterC[0]['subtitle']}</p>
+                <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl dark:text-white">{author[0].newsletterC['title']}</h2>
+                <p className="mx-auto mb-8 max-w-2xl font-light text-gray-500 md:mb-12 sm:text-xl dark:text-gray-400">{author[0].newsletterC['subtitle']}</p>
                 <form onSubmit={subscribe}>
                     <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
                         <div className="relative w-full">

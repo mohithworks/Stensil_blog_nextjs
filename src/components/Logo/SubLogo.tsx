@@ -17,7 +17,7 @@ const SubLogo: React.FC<LogoProps> = ({
   return (
     <Link
       href="/"
-      className="ttnc-logo relative text-primary-6000 flex-shrink-0 w-auto h-14 sm:h-12 md:h-12 text-neutral-400"
+      className="ttnc-logo w-auto h-14 sm:h-12 md:h-12 text-neutral-400"
     >
       {/* THIS USE FOR MY MULTI DEMO */}
       {/* IF YOU ARE MY CLIENT. PLESE DELETE THIS CODE AND YOU YOUR IMAGE PNG BY BELLOW CODE */}

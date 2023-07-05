@@ -40,7 +40,7 @@ const SectionArticles: FC<SectionArticlesProps> = ({
 
   return (
     
-    <div className="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
+    <div className="w-full pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
         <div>
             {
                 (filterShow && categories && categoryListL && fetchCatPost) && <div className={`flex flex-col sm:justify-between sm:flex-row ${categories.length != 0 ? `mb-8` : `-mb-1`} md:-mb-3 lg:-mb-3`}>

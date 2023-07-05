@@ -23,7 +23,7 @@ const SubFooter: React.FC<SubFooterProps> = ({ authors, menus }) => {
   const darkmodeState = useThemeMode();
 
   return (
-    <div className="nc-Footer justify-end relative py-8 lg:py-8 border-t border-neutral-200 dark:border-neutral-700">
+    <div className="nc-Footer bg-white justify-end relative py-8 lg:py-8 border-t border-neutral-200 dark:border-neutral-700">
         <div className="flex flex-col items-center text-center justify-center md:flex-row md:justify-between">
             <div className="flex md:ml-5">
                 {renderLogo(authors, darkmodeState['isDarkMode'])}

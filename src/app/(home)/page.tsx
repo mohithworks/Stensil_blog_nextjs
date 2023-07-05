@@ -143,7 +143,7 @@ const PageHome = (props: any) => {
 
   const posts = post?.sort((a:any, b:any) => {
     return b.created_at - a.created_at;
-  }).slice(0, 4);
+  }).slice(0, 3);
 
   // var initRange:any = parseInt(localStorage.getItem('initpostRange')!);
   // var finRange:any = parseInt(localStorage.getItem('finpostRange')!);
