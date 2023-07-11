@@ -22,7 +22,7 @@ const fetchPost = async (postslug: string, domain1: string, domain2: string) => 
 
   const { data, error } = await supabaseClient
     .from('posts')
-    .select(`*, authors!inner(*), category!inner(*), refauthors!inner(*)`)
+    .select(`*, authors!inner(users!users(*)), category!inner(*), refauthors!inner(*)`)
     .eq('posttitle', postslug)
     .eq('authors.username', domain1)
     .eq('authors.cus_domain', domain2)
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   }
   return {
-    title: post[0].metatitle + ' | ' + post[0].authors.metatitle,
+    title: (post[0].metatitle === null ? post[0].title : post[0].metatitle) + ' | ' + post[0].authors.metatitle,
     description: post[0].metadescription,
     keywords: post[0].title + ' ' + post[0].category.name + ' ' + post[0].authors.metatitle,
   };

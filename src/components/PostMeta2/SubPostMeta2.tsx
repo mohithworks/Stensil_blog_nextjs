@@ -43,13 +43,13 @@ const SubPostMeta2: FC<PostMeta2Props> = ({
               ? "h-6 w-6 text-sm"
               : "h-10 w-10 sm:h-11 sm:w-11 text-xl"
           }
-          imgUrl={type === 'authors' ? authors.avatar_url : refauthors.avatar}
-          userName={type === 'authors' ? authors.full_name : refauthors.name}
+          imgUrl={type === 'authors' ? authors.users.avatar_url : refauthors.avatar}
+          userName={type === 'authors' ? authors.users.full_name : refauthors.name}
         />
       <div className="ml-3">
         <div className="flex items-center">
           <p className="block font-semibold">
-            {type === 'authors' ? authors.full_name : refauthors.name}
+            {type === 'authors' ? authors.users.full_name : refauthors.name}
           </p>
 
           {/* {!hiddenCategories && (

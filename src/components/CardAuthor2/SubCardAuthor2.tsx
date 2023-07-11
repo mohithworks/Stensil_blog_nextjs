@@ -28,14 +28,14 @@ const SubCardAuthor2: FC<CardAuthor2Props> = ({
         sizeClass="h-10 w-10 text-base"
         containerClassName="flex-shrink-0 mr-3"
         radius="rounded-full"
-        imgUrl={type === 'authors' ? author.avatar_url : author.avatar}
-        userName={type === 'authors' ? author.full_name : author.name}
+        imgUrl={type === 'authors' ? author.users.avatar_url : author.avatar}
+        userName={type === 'authors' ? author.users.full_name : author.name}
       />
       <div>
         <h2
           className={`text-sm text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium`}
         >
-          {type === 'authors' ? author.full_name : author.name}
+          {type === 'authors' ? author.users.full_name : author.name}
         </h2>
         <span
           className={`flex items-center mt-1 text-xs text-neutral-500 dark:text-neutral-400`}

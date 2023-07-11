@@ -9,6 +9,8 @@ import supabaseClient from "@/utils/supabaseClient";
 import getAuthorSlugv2 from "@/utils/getAuthorSlugv2";
 import GlobalContextProvider from "@/context/GlobalContextProvider";
 import { Metadata } from 'next';
+import sanitizeHtml from 'sanitize-html';
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,21 +35,21 @@ const fetchAuthor = async () => {
   var posts:any = await supabaseClient
   .from("posts")
   .select(
-    "*, authors!inner(*), category!inner(*), refauthors!inner(*)",
+    "*, authors!inner(*, custom_code!custom_code(*), users!users(*)), category!inner(*), refauthors!inner(*)",
   )
   .eq("authors.username", domain1)
   .eq("authors.cus_domain", domain2)
   .range(0, 10)
   .order("created_at", { ascending: false });
 
-  var nav:any = await supabaseFetchMultipleEq("navigationv2", "*, authors!inner(*)", "authors.username", domain1, 'authors.cus_domain', domain2);
+  var nav:any = await supabaseFetchMultipleEq("navigationv2", "*, authors!inner(*, custom_code!custom_code(*), users!users(*))", "authors.username", domain1, 'authors.cus_domain', domain2);
 
   if (posts.error || nav.error) {
 
     return returnFun("Please check your internet connection & refresh the page", null, [], null, null, domain1, domain2);
 
   }else if (posts.data.length == 0) {
-    var authors:any = await supabaseFetchMultipleEq("authors", "*", "username", domain1, 'cus_domain', domain2);
+    var authors:any = await supabaseFetchMultipleEq("authors", "*, custom_code!custom_code(*), users!users(*)", "username", domain1, 'cus_domain', domain2);
 
     if (authors.error) {
       return returnFun("Please check your internet connection & refresh the page", null, [], null, null, domain1, domain2);
@@ -69,7 +71,6 @@ const fetchMeta = async () => {
     if (authors.error) {
       return { error: true, data: null };
     }
-    console.log(authors)
     return { error: false, data: authors.data };
 }
 
@@ -107,6 +108,43 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+function injectScriptsFromHTML(html:any, strategy:any) {
+  var extractedTags = sanitizeHtml(html, {
+    allowedTags: [ 'script' ],
+    allowedAttributes: {
+      'script': [ 'src', 'type' ]
+    },
+    nonTextTags: ['button', 'div', 'link', 'p', 'b', 'i', 'u', 'strong', 'em', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'img', 'ul', 'li', 'ol', 'table', 'tr', 'td', 'th', 'thead', 'tbody', 'tfoot', 'blockquote', 'pre', 'code', 'br', 'hr', 'dd', 'dl', 'dt', 'del', 'ins', 'sup', 'sub', 'kbd', 'samp', 'var', 'cite', 'abbr', 'acronym', 'q', 'mark', 'small', 'time', 'dfn', 'ruby', 'rt', 'rp', 'wbr', 'details', 'summary', 'figure', 'figcaption', 'audio', 'video', 'source', 'track', 'embed', 'object', 'param', 'canvas', 'noscript', 'svg', 'math', 'input', 'textarea', 'select', 'option', 'optgroup', 'button', 'datalist', 'keygen', 'output', 'progress', 'meter', 'fieldset', 'legend', 'label', 'form', 'iframe', 'style', 'title', 'base', 'meta', 'html', 'body', 'frameset', 'frame', 'noframes']
+  });
+  console.log(extractedTags)
+  const regex = /<script(?:\s+[^>]+)?>([\s\S]*?)<\/script>/gi;
+  const scriptTags = extractedTags.match(regex);
+
+  if (!scriptTags) {
+    return <></>;
+  }
+
+  return scriptTags.map((scriptTag:any, index:any) => {
+    const srcMatch = scriptTag.match(/src=(?:"|')(.*?)(?:"|')/i);
+    const scriptContent = scriptTag.replace(/<\/?script(?:\s+[^>]+)?>/gi, '');
+
+    console.log(scriptContent)
+
+    if (srcMatch) {
+      const src = srcMatch[1];
+      return <Script key={index} src={src} strategy={strategy} />;
+    } else if (scriptContent) {
+      return (
+        <Script id={index} key={index} strategy={strategy}>
+          {scriptContent}
+        </Script>
+      );
+    }
+
+    return <></>;
+  });
+}
+
 export default async function RootLayout({
   children,
 }: {
@@ -116,9 +154,19 @@ export default async function RootLayout({
   const userData = await fetchAuthor();
 
   const { errors, author, nav } = userData;
+  
+  var headerHTML = "<head>" + author[0].custom_code.header_code + "</head>";
+  var footerHTML = "<footer>" + author[0].custom_code.footer_code + "</footer>";
+
+  const headerScripts = injectScriptsFromHTML(headerHTML, "afterInteractive");
+  const footerScripts = injectScriptsFromHTML(footerHTML, "lazyOnload");
+  console.log(headerScripts)
 
   return (
     <html lang="en" className={poppins.className}>
+      <head>
+        {headerScripts}
+      </head>
       <body suppressHydrationWarning={true} className="bg-[#f8f8f8] text-base dark:bg-neutral-900/95 text-neutral-900 dark:text-neutral-200">
         <GlobalContextProvider data={userData}>
           <SiteHeader />
@@ -131,6 +179,7 @@ export default async function RootLayout({
             darkmode: author[0].darkmode,
           }]} menus={nav} />
         </GlobalContextProvider>
+        {footerScripts}
       </body>
     </html>
   );
