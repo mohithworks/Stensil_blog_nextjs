@@ -43,7 +43,7 @@ function generateSiteMap(URL: any, posts:any, category: any) {
 }
  
 export async function GET() {
-  const protocol = process.env.NEXT_SITE_NAME === 'localhost:3000' ? 'http' : 'https';
+  const protocol = process.env.NEXT_SITE_NAME === 'localhost:3001' ? 'http://' : 'https://';
   const URL = protocol + headers().get('host');
   const { domain1, domain2 } = getAuthorSlugv2();
   
